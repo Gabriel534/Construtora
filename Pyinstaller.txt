@@ -1,0 +1,2 @@
+pyinstaller --name="Calculadora" --noconfirm --onefile --add-data='.\Pyside6\Calculadora\files\;files\' --icon='.\Pyside6\Calculadora\files\icon.png' --noconsole --clean --log-level=WARN .\Pyside6\Calculadora\main.py
+pyinstaller .\Pyside6\Calculadora\main.py --name="Calculadora" --noconfirm --onefile --noconsole --clean --add-data='.\Pyside6\Calculadora\files\;files\'
