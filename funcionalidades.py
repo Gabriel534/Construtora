@@ -74,7 +74,7 @@ class Itens(QWidget):
 
         # Busca o cabeçalho
         with SqlReader(SQL, CODE) as arquivo:
-            self.cabecalho = arquivo.getCabec(self.table)
+            self.cabecalho = arquivo.getCabec(self.table)  #type: ignore
 
         # Filtra para que só apareça o nome de cada coluna da tabela APENAS
         self.cabecalho_nomes = [a[1] for a in self.cabecalho]  # type: ignore
@@ -239,16 +239,20 @@ class Linha(QWidget):
         self.labels[0].setFixedWidth(WIDTH_ID)
 
         self.X = QPushButton("X")
-        self.entrar_usuario = QPushButton("Acessar")
+        # self.entrar_usuario = QPushButton("Acessar")
 
         # self.text.setFixedWidth(parent.width())
         self.X.setFixedWidth(WIDTH_BOTAO)
-
-        self.entrar_usuario.setFixedWidth(WIDTH_BOTAO)
         self.X.clicked.connect(self.deleteItemInfo)
-        self.entrar_usuario.clicked.connect(self.acessar)
 
-        self._layout.addWidget(self.entrar_usuario)
+        self.labelvazio = QLabel()
+        self.labelvazio.setFixedWidth(WIDTH_BOTAO)
+        self._layout.addWidget(self.labelvazio)
+        
+        # self.entrar_usuario.setFixedWidth(WIDTH_BOTAO)
+        # self.entrar_usuario.clicked.connect(self.acessar)
+        # self._layout.addWidget(self.entrar_usuario)
+
         self._layout.addWidget(self.X)
         self.setLayout(self._layout)
         self.parents.adjustSize()
