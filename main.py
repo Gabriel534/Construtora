@@ -60,22 +60,9 @@ class AppCentral(QWidget):
         self.parents = parent
         self._layout = QVBoxLayout()
         self.setLayout(self._layout)
-        self.menubar = MenuBar(self)
         self.centro = Centro(self.parents, SQL)
-        self._layout.addWidget(self.menubar)
         self._layout.addWidget(self.centro)
         self._layout.setAlignment(Qt.AlignmentFlag.AlignTop)
-
-
-class MenuBar(QWidget):
-    def __init__(self, parent: AppCentral, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.parents = parent
-        self._layout = QHBoxLayout()
-        user = QLabel(f"Usuário: {self.parents.parents.username}")
-
-        self.setLayout(self._layout)
-        self._layout.addWidget(user)
 
 
 class Menu(QWidget):
@@ -89,7 +76,6 @@ class Menu(QWidget):
                        "clientes": QPushButton("Clientes"),
                        "pessoal": QPushButton("Pessoal"),
                        "materiais": QPushButton("Materiais"),
-                       "submenu_compartilhe": QPushButton("Compartilhe"),
                        "submenu_contato": QPushButton("Contato"),
                        "submenu_ajuda": QPushButton("Ajuda")}
 
@@ -148,14 +134,11 @@ class Menu(QWidget):
         self.tirarChecagem()
         self.botoes['materiais'].setChecked(True)
 
-    def compartilhe(self):
-        ...
-
     def contato(self):
         msg = QMessageBox()
         msg.setWindowTitle("Contato")
         msg.setText(
-            "Email: gsampaiosantos537@gmail.com\nTelefone: (35) 98273-2938")
+            "Email: example@gmail.com\nTelefone: (35) 12345-6789")
         msg.setIcon(msg.Icon.NoIcon)
         msg.exec()
 
@@ -203,7 +186,6 @@ def style(qApp: QApplication):
 
 
 if __name__ == "__main__":
-    from qt_material import apply_stylesheet
     app = QApplication(argv)
     icon = QIcon(str(ICON))
     app.setWindowIcon(icon)
